@@ -1,0 +1,78 @@
+<html>
+
+
+<head>
+   <meta charset="UTF-8">
+   <title>Informações da Inscrição</title>
+   <style>
+       /* Estilos CSS */
+   </style>
+</head>
+
+
+<body>
+   <div id="user-info">
+       <h1>Informações da Inscrição</h1>
+       <!-- Campo para digitar o ID da isncrição -->
+       <div class="input-container">
+           <label for="inscricao-id">Digite o ID da inscrição:</label>
+           <input type="number" id="inscricao-id" placeholder="Ex: 1" min="1">
+           <button onclick="fetchData()">Pesquisar</button>
+       </div>
+       <!-- Área para exibir os dados da inscrição -->
+       <div id="inscricao-details"></div>
+   </div>
+
+
+   <script>
+       function fetchData() {
+           const inscricao = document.getElementById('inscricao-id').value; // Pega o ID digitado pelo usuário
+           if (!inscricao) {
+               alert("Por favor, digite um ID válido.");
+               return;
+           }
+
+
+           const url = `http://localhost:8080/inscricao/${inscricaoId}`; // Monta a URL com o ID
+
+
+           // Limpa os dados anteriores
+           document.getElementById('inscricao-details').innerHTML = "";
+
+
+           // Função para buscar os dados do JSON
+           async function fetchInscricaoData() {
+               try {
+                   const response = await fetch(url);
+                   if (!response.ok) {
+                       throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
+                   }
+                   const jsonData = await response.json();
+                   displayData(jsonData);
+               } catch (error) {
+                   console.error("Erro ao buscar os dados:", error);
+                   // Exibe uma mensagem de erro na página
+                   document.getElementById('inscricao-details').innerHTML = `
+               <p class="error">Erro ao carregar os dados.</p>
+               <p class="error">Detalhes: ${error.message}</p>
+           `;
+               }
+           }
+
+
+           // Função para exibir os dados na página
+           function displayData(jsonData) {
+               // Exibir informações da Inscrição
+               const userDetails = document.getElementById('inscricao-details');
+               userDetails.innerHTML = `
+        <p><strong>ID:</strong> ${jsonData.id}</p>
+        <p><strong>Tipo de Inscricao:</strong> ${jsonData.tipoins}</p>
+        <p><strong>:</strong> R$ $${jsonData.tipapartic}</p>
+       `;
+           }
+           // Iniciar a busca dos dados
+           fetchInscricaoData();
+       }
+   </script>
+</body>
+</html>
