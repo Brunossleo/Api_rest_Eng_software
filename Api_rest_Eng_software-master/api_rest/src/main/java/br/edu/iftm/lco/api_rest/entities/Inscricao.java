@@ -1,10 +1,6 @@
-package br.edu.entities;
+package entities;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@SuppressWarnings("unused")
 @Entity
 @Table(name = "tb_inscricao")
 @Data
@@ -29,23 +24,10 @@ public class Inscricao implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "nome")
-  private String nome;
+  @Column(name = "tipoins")
+  private String tipoins;
 
-  @Column(name = "palestrante")
-  private String palestrante;
-
-  @Column(name = "data")
-  @DateTimeFormat(pattern = "dd-MM-yyyy")
-  private String data;
-
-  @Column(name = "modalidade")
-  private String modalidade;
-
-  @Column(name = "tipo")
-  private String local;
-
-  @Column(name = "descricao")
-  private String descricao;
+  @Column(name = "tipapartic")
+  private String tipapartic;
 
 }

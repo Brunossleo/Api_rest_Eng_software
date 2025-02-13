@@ -1,4 +1,4 @@
-package br.edu.entities;
+package entities;
 
 import java.io.Serializable;
 import java.sql.Blob;

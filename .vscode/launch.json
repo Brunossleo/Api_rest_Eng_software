@@ -9,6 +9,16 @@
             "projectName": "api_rest",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestApplication<api_rest>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ApiRestApplication",
+            "projectName": "api_rest",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
